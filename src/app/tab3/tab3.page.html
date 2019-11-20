@@ -1,0 +1,40 @@
+<ion-app>
+  <ion-header translucent>
+    <ion-toolbar color="primary">
+      <ion-title>Chat</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content fullscreen>
+      <ion-list>
+          <ion-list-header>
+            Conversations
+          </ion-list-header>
+          <ion-item routerLink="/conversation/{{conversation.conversation_id}}" *ngFor="let conversation of conversations" >
+            <ion-avatar slot="start">
+              <img src="https://ionicframework.com/docs/demos/api/list/avatar-poe.png">
+            </ion-avatar>
+            <ion-label>
+              <h2 *ngIf="conversation.id_one == user.id">{{conversation.usernametwo}}</h2>
+              <h2 *ngIf="conversation.id_two == user.id">{{conversation.usernameone}}</h2>
+              <ion-badge color="primary">Online</ion-badge>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+    <ion-list>
+      <ion-list-header>
+        Online
+      </ion-list-header>
+      <ion-item (click)="onCreateNewConversation(users.id)" *ngFor="let users of usersOnline">
+        <ion-avatar slot="start">
+          <img src="https://ionicframework.com/docs/demos/api/list/avatar-poe.png">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{users.username}}</h2>
+          <p>{{users.email}}</p>
+          <ion-badge color="primary">Online</ion-badge>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-app>

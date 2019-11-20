@@ -1,0 +1,34 @@
+<ion-header translucent>
+    <ion-toolbar color="primary">
+        <ion-fab routerLink="/tabs/tab3" slot="start">
+            <ion-icon name="arrow-round-back"></ion-icon>
+        </ion-fab>
+        <ion-title>Chat</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" *ngFor="let message of messages">
+                <ion-card >
+                    <ion-card-content>
+                        <ion-card-subtitle>
+                            <span style="font-weight:bold; color:#000;" *ngIf="user.id == message.user_id">Tu</span>
+                            <span style="font-weight:bold; color:#000;" *ngIf="user.id != message.user_id">{{message.user}}</span>  
+                            :{{message.message}}
+                        </ion-card-subtitle>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-item>
+        <ion-input style="padding: 20px 0px !important;" type="text" [(ngModel)]="chat_input"
+            placeholder="Enter message"></ion-input>
+        <ion-icon name="md-send" (click)="send()" item-right></ion-icon>
+    </ion-item>
+</ion-footer>
